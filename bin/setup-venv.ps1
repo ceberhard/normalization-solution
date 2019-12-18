@@ -8,9 +8,6 @@ if (test-path $venvpath) {
 $createpath = '& "' + $Env:PYTHON_PATH + '" -m venv "' + $venvpath + '"'
 Invoke-Expression $createpath
 
-# $upgradepip = $venvpath + '\Scripts\pip.exe install --upgrade pip'
-# Invoke-Expression $upgradepip
-
 $installreqs = $venvpath + '\Scripts\pip.exe --no-cache-dir install --upgrade -r .\requirements.txt'
 Invoke-Expression $installreqs
 
