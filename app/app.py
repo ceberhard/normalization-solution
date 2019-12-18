@@ -60,12 +60,13 @@ def __NormalizeRow(csvrow, counter):
 
         __RunNormalization("Notes", util.NormalizeText, csvrow, normalizedrow, counter)
 
-        sys.stdout.write(f'{",".join([str(x) for x in normalizedrow])}\n')
+        outputstr = ",".join([str(x) for x in normalizedrow])
+        sys.stdout.write(outputstr + '\n')
         sys.stdout.flush()
         return True, normalizedrow
 
     except Exception as err:
-        sys.stderr.write(f"WARNING: Failed to Normalize Row: {counter}, Message: {err}. It will be excluded from output;\n")
+        sys.stderr.write("WARNING: Failed to Normalize Row: {0}, Message: {1}. It will be excluded from output;\n".format(counter, err))
         sys.stderr.flush()
         return False, None
 
@@ -81,7 +82,7 @@ def __RunNormalization(column, normalizefunc, inputrow, outputrow, counter):
         outputrow.append(result)
         return result
     else:
-        sys.stderr.write(f"WARNING: Failed to Normalize Row: {counter}, Field: {column}, Message: {result}. It will be excluded from output;\n")
+        sys.stderr.write("WARNING: Failed to Normalize Row: {0}, Field: {1}, Message: {2}. It will be excluded from output;\n".format(counter, column, result))
         sys.stderr.flush()
         return None
 
